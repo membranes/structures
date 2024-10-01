@@ -1,0 +1,12 @@
+{
+  "tags": [
+    {
+      "Key": "description",
+      "Value": "A repository for the core entity recognition project."
+    },
+    {
+      "Key": "usage",
+      "Value": "For hosting the images of all the development and deployment stages."
+    }
+  ]
+}
