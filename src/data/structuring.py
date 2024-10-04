@@ -62,7 +62,6 @@ class Structuring:
         """
 
         blob = self.__data[['sentence_identifier', 'word', 'tag']].copy()
-        blob.info()
 
         # Re-build the sentences, and a string of the corresponding labels per sentence word.
         sentences = self.__sentences(blob=blob)
@@ -73,7 +72,7 @@ class Structuring:
         frame.reset_index(inplace=True)
         frame.rename(columns={'word': 'sentence', 'tag': 'tagstr'}, inplace=True)
 
-        self.__logger.info(frame.head())
-        self.__logger.info(frame.info())
+        self.__logger.info('\n\n%s\n\n', frame.head())
+        frame.info()
 
         return frame
