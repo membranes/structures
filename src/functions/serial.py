@@ -1,6 +1,8 @@
 """
 Module serial.py
 """
+import sys
+
 import yaml
 import requests
 
@@ -38,7 +40,8 @@ class Serial:
         if response.status_code == 200:
             content = response.content.decode(encoding='utf-8')
             return yaml.safe_load(content)
-        raise f'Failure code: {response.status_code}'
+
+        sys.exit(response.status_code)
 
     @staticmethod
     def read(uri: str) -> dict:
