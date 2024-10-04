@@ -55,7 +55,7 @@ class Interface:
 
         return elements, enumerator, archetype
 
-    def __filtering(self, elements: pd.DataFrame) -> pd.DataFrame:
+    def __data(self, elements: pd.DataFrame) -> pd.DataFrame:
         """
         Filtering out instances of the raw data that are associated with elements/tags
         that have fewer than an expected number of occurrences.
@@ -65,18 +65,11 @@ class Interface:
         """
 
         filtering = src.data.filtering.Filtering()
+        filtered = filtering(data=self.__raw, elements=elements)
 
-        return filtering(data=self.__raw, elements=elements)
+        data = src.data.structuring.Structuring(data=filtered).exc()
 
-    @staticmethod
-    def __structuring(filtered: pd.DataFrame):
-        """
-
-        :param filtered:
-        :return:
-        """
-
-        return src.data.structuring.Structuring(data=filtered).exc()
+        return data
 
     def exc(self):
         """
@@ -85,8 +78,7 @@ class Interface:
         """
 
         elements, enumerator, archetype = self.__elements()
-        filtered = self.__filtering(elements=elements)
-        data = self.__structuring(filtered=filtered)
+        data = self.__data(elements=elements)
 
         # Save: Upcoming
         self.__logger.info(enumerator)
