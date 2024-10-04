@@ -1,9 +1,14 @@
 """Module setup.py"""
+import os
+
 import src.elements.s3_parameters as s3p
 import src.elements.service as sr
 import src.functions.directories
 import src.s3.bucket
 import src.s3.keys
+import src.s3.prefix
+
+import config
 
 
 class Setup:
@@ -14,19 +19,21 @@ class Setup:
     Sets up local & cloud environments
     """
 
-    def __init__(self, service: sr.Service, s3_parameters: s3p.S3Parameters, warehouse: str):
+    def __init__(self, service: sr.Service, s3_parameters: s3p.S3Parameters):
         """
 
         :param service: A suite of services for interacting with Amazon Web Services.
         :param s3_parameters: The overarching S3 parameters settings of this project, e.g., region code
                               name, buckets, etc.
-        :param warehouse: The temporary local directory where data sets are initially placed,
-                          prior to transfer to Amazon S3 (Simple Storage Service)
         """
 
         self.__service: sr.Service = service
         self.__s3_parameters: s3p.S3Parameters = s3_parameters
-        self.__warehouse = warehouse
+        self.__configurations = config.Config()
+
+        # The prefix in focus within the Amazon S3 () bucket in focus.
+        parts = self.__configurations.prepared_.split(sep=(self.__configurations.warehouse + os.sep))
+        self.__prefix = self.__s3_parameters.path_internal_data + parts[-1] + '/'
 
     def __s3(self) -> bool:
         """
@@ -41,10 +48,16 @@ class Setup:
 
         if bucket.exists():
 
-            temporary = src.s3.keys.Keys(
-                service=self.__service, bucket_name=self.__s3_parameters.internal).all()
+            instance = src.s3.prefix.Prefix(
+                service=self.__service, bucket_name=self.__s3_parameters.internal)
 
-            return bucket.empty() if temporary else True
+            keys = instance.objects(prefix=self.__prefix)
+            objects = [{'Key' : key} for key in keys]
+
+            state = instance.delete(objects=objects)
+            print(state)
+
+            return True if state else False
 
         return bucket.create()
 
@@ -55,9 +68,9 @@ class Setup:
         """
 
         directories = src.functions.directories.Directories()
-        directories.cleanup(path=self.__warehouse)
+        directories.cleanup(path=self.__configurations.warehouse)
 
-        return directories.create(path=self.__warehouse)
+        return directories.create(path=self.__configurations.prepared_)
 
     def exc(self) -> bool:
         """
