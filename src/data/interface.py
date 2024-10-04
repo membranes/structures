@@ -15,6 +15,7 @@ import src.elements.s3_parameters as s3p
 import src.elements.service as sr
 import src.s3.ingress
 import src.functions.objects
+import src.functions.streams
 
 
 class Interface:
@@ -37,6 +38,7 @@ class Interface:
         # Instances
         self.__dictionary = src.data.dictionary.Dictionary()
         self.__objects = src.functions.objects.Objects()
+        self.__streams = src.functions.streams.Streams()
 
         # Logging
         logging.basicConfig(level=logging.INFO,
@@ -81,13 +83,12 @@ class Interface:
         data = self.__data(elements=elements)
 
         # Save: Upcoming
-        self.__logger.info(enumerator)
-        self.__logger.info(archetype)
-        self.__logger.info(data)
+        self.__logger.info('%s\n%s\n%s', enumerator, archetype, data)
 
-        self.__objects.write(nodes=enumerator, path=os.path.join(self.__configurations.prepared_, 'enumerator.json'))
-        self.__objects.write(nodes=archetype, path=os.path.join(os.path.join(self.__configurations.prepared_, 'archetype.json')))
-
+        pre = os.path.join(self.__configurations.prepared_, '{}')
+        self.__objects.write(nodes=enumerator, path=pre.format('enumerator.json'))
+        self.__objects.write(nodes=archetype, path=pre.format('archetype.json'))
+        self.__streams.write(blob=data, path=pre.format('data.csv'))
 
         # Inventory of data files
         # strings = self.__dictionary.exc(
