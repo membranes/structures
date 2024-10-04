@@ -4,6 +4,7 @@ import dask.dataframe as dfr
 import pandas as pd
 
 import src.elements.s3_parameters as s3p
+import config
 
 
 class Source:
@@ -17,7 +18,7 @@ class Source:
         """
 
         self.__path = ('s3://' + s3_parameters.internal + '/' +
-                       s3_parameters.path_internal_data + 'raw/dataset.csv')
+                       s3_parameters.path_internal_data + config.Config().node)
 
         # Naming convention
         self.__names: dict[str, str] = {'Word': 'word', 'POS': 'part', 'Tag': 'tag'}
