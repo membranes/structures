@@ -44,12 +44,12 @@ class Ingress:
         """
 
         # Either tags = {key: value for key, value in metadata.items()}, or
-        tags = dict(metadata.items())
-        tagging = urllib.parse.urlencode(tags)
+        # tags = dict(metadata.items())
+        # tagging = urllib.parse.urlencode(tags)
 
         try:
             self.__s3_client.upload_file(Filename=file, Bucket=self.__bucket_name, Key=key,
-                                         ExtraArgs={'Metadata': metadata, 'Tagging': tagging})
+                                         ExtraArgs={'Metadata': metadata})
             return f'Uploading {key}'
         except botocore.exceptions.ClientError as err:
             raise err from err
