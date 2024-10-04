@@ -31,7 +31,7 @@ class Interface:
         self.__configurations = config.Config()
 
         # The raw data
-        self.__raw = src.data.source.Source().exc()
+        self.__raw = src.data.source.Source(s3_parameters=s3_parameters).exc()
 
         # Instances
         self.__dictionary = src.data.dictionary.Dictionary()
@@ -92,11 +92,11 @@ class Interface:
         self.__logger.info(data)
 
         # Inventory of data files
-        strings = self.__dictionary.exc(
-            path=self.__configurations.prepared_, extension='*', prefix=self.__s3_parameters.path_internal_data)
+        # strings = self.__dictionary.exc(
+        #     path=self.__configurations.prepared_, extension='*', prefix=self.__s3_parameters.path_internal_data)
 
         # Transfer
-        messages = src.s3.ingress.Ingress(
-            service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
-
-        return messages
+        # messages = src.s3.ingress.Ingress(
+        #     service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
+        #
+        # return messages
