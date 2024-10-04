@@ -20,7 +20,7 @@ class S3Parameters(typing.NamedTuple):
       The Amazon S3 (Simple Storage Service) bucket that hosts this project's data.
 
     path_internal_data : str
-      The bucket path of data frame.
+      The bucket path of the data.
 
     path_internal_artefacts : str
       The bucket path of the model development artefacts.
