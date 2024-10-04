@@ -81,5 +81,6 @@ class Tags:
 
         # Focusing on viable/applicable categories
         elements = self.__applicable(blob=elements)
+        self.__logger.info(elements)
 
         return elements
