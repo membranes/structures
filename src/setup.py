@@ -31,7 +31,7 @@ class Setup:
         self.__configurations = config.Config()
 
         # The prefix in focus within the Amazon S3 bucket in focus.
-        parts = self.__configurations.prepared_.split(sep=(self.__configurations.warehouse + os.sep))
+        parts = self.__configurations.prepared_.split(sep=self.__configurations.warehouse + os.sep)
         self.__prefix = self.__s3_parameters.path_internal_data + parts[-1] + '/'
 
     def __clear(self) -> bool:
@@ -49,9 +49,9 @@ class Setup:
         if len(keys) > 0:
             objects = [{'Key' : key} for key in keys]
             state = instance.delete(objects=objects)
-            return True if state else False
-        else:
-            return True
+            return bool(state)
+
+        return True
 
     def __s3(self) -> bool:
         """
