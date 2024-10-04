@@ -13,22 +13,22 @@ import src.elements.s3_parameters as s3p
 import src.elements.service as sr
 import src.s3.ingress
 
+import config
+
 
 class Interface:
 
-    def __init__(self, service: sr.Service,  s3_parameters: s3p, warehouse: str):
+    def __init__(self, service: sr.Service,  s3_parameters: s3p):
         """
 
         :param service: A suite of services for interacting with Amazon Web Services.
         :param s3_parameters: The overarching S3 parameters settings of this
                               project, e.g., region code name, buckets, etc.
-        :param warehouse: The temporary local directory where data sets are initially placed,
-                          prior to transfer to Amazon S3 (Simple Storage Service)
         """
 
         self.__service: sr.Service = service
         self.__s3_parameters: s3p.S3Parameters = s3_parameters
-        self.__warehouse: str = warehouse
+        self.__configurations = config.Config()
 
         # The raw data
         self.__raw = src.data.source.Source().exc()
@@ -93,7 +93,7 @@ class Interface:
 
         # Inventory of data files
         strings = self.__dictionary.exc(
-            path=self.__warehouse, extension='*', prefix=self.__s3_parameters.path_internal_frame)
+            path=self.__configurations.prepared_, extension='*', prefix=self.__s3_parameters.path_internal_data)
 
         # Transfer
         messages = src.s3.ingress.Ingress(
