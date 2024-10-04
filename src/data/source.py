@@ -5,6 +5,7 @@ import dask.dataframe as dfr
 import pandas as pd
 
 import config
+import src.elements.s3_parameters as s3p
 
 
 class Source:
@@ -12,10 +13,13 @@ class Source:
     Reads-in the raw data
     """
 
-    def __init__(self) -> None:
+    def __init__(self, s3_parameters: s3p.S3Parameters) -> None:
         """
         Construction
         """
+
+        self.__path = ('s3://' + s3_parameters.internal + '/' +
+                       s3_parameters.path_internal_data + 'raw/dataset.csv')
 
         # The location of the raw data
         self.__datapath = config.Config().datapath 
@@ -31,7 +35,7 @@ class Source:
         """
 
         try:
-            frame: dfr.DataFrame = dfr.read_csv(path=os.path.join(self.__datapath, 'dataset.csv'), header=0)
+            frame: dfr.DataFrame = dfr.read_csv(path=self.__path, header=0)
         except ImportError as err:
             raise err from err
         
