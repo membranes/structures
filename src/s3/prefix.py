@@ -1,10 +1,9 @@
 """Module prefix.py"""
 import logging
-import boto3
+
 import botocore.exceptions
 
 import src.elements.service as sr
-
 import src.s3.keys
 
 
@@ -13,15 +12,13 @@ class Prefix():
     def __init__(self, service: sr.Service, bucket_name: str):
         """
 
-        :param service:
-        :param bucket_name:
+        :param service: A suite of services for interacting with Amazon Web Services.
+        :param bucket_name: The name of an Amazon S3 bucket in focus.
         """
 
         self.__service: sr.Service = service
         self.__s3_client = self.__service.s3_client
         self.__bucket_name = bucket_name
-
-
 
         # Logging
         logging.basicConfig(level=logging.INFO,
@@ -32,7 +29,8 @@ class Prefix():
     def delete(self, objects: list[dict]):
         """
 
-        :param objects: An Amazon S3 (Simple Storage Service) ...
+        :param objects: The objects of Amazon S3 (Simple Storage Service) bucket.  The
+                        format is [{'Key': '...', 'Key': '...', 'Key': '...', ...}]
         :return:
         """
 
@@ -42,14 +40,12 @@ class Prefix():
         except botocore.exceptions.ClientError as err:
             raise err from err
 
-        self.__logger.info(response)
-
         return response
 
     def objects(self, prefix: str) -> list[str]:
         """
 
-        :param prefix:
+        :param prefix: An Amazon S3 (Simple Storage Service) prefix.
         :return:
         """
 
