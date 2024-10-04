@@ -28,6 +28,8 @@ class Prefix():
 
     def delete(self, objects: list[dict]):
         """
+        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/client/delete_objects.html
+        https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/bucket/delete_objects.html
 
         :param objects: The objects of Amazon S3 (Simple Storage Service) bucket.  The
                         format is [{'Key': '...', 'Key': '...', 'Key': '...', ...}]
