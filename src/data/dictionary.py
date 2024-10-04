@@ -52,8 +52,8 @@ class Dictionary:
         :return:
         """
 
-        return {'description': 'Text',
-                'details': 'A mix of historical and current affairs.'}
+        return {'description': 'The prepared data collection for the token classification project.',
+                'details': 'The data data.csv, the identity and label mapping enumerator.json, and the inverse of enumerator.json, i.e., archetype.json.'}
 
     def exc(self, path: str, extension: str, prefix: str) -> pd.DataFrame:
         """
