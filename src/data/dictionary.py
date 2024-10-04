@@ -53,7 +53,7 @@ class Dictionary:
         """
 
         return {'description': 'The prepared data collection for the token classification project.',
-                'details': 'The data data.csv, the identity and label mapping enumerator.json, and the inverse of enumerator.json, i.e., archetype.json.'}
+                'details': 'The collection consists of (a) the data, i.e., data.csv, (b) the identity and label mapping enumerator.json, and (c) the inverse of enumerator.json, i.e., archetype.json.'}
 
     def exc(self, path: str, extension: str, prefix: str) -> pd.DataFrame:
         """
