@@ -18,6 +18,8 @@ def main() -> None:
     setup = src.setup.Setup(service=service, s3_parameters=s3_parameters).exc()
     logger.info(setup)
 
+    src.data.interface.Interface(service=service, s3_parameters=s3_parameters).exc()
+
     # Get
     # if setup:
     #     messages = src.data.interface.Interface(service=service, s3_parameters=s3_parameters).exc()
