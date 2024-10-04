@@ -73,4 +73,7 @@ class Structuring:
         frame.reset_index(inplace=True)
         frame.rename(columns={'word': 'sentence', 'tag': 'tagstr'}, inplace=True)
 
+        self.__logger.info(frame.head())
+        self.__logger.info(frame.info())
+
         return frame
