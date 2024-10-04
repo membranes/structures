@@ -38,14 +38,14 @@ class Encodings:
 
         return enumerator, archetype
 
-    def exc(self, elements: pd.DataFrame) -> typing.Tuple[dict, dict]:
+    def exc(self, tags: pd.DataFrame) -> typing.Tuple[dict, dict]:
         """
 
-        :param elements: pd.DataFrame: tag | annotation | category
+        :param tags: pd.DataFrame: tag | annotation | category
         :return:
         """
 
-        enumerator, archetype = self.__coding(series=elements['tag'])
+        enumerator, archetype = self.__coding(series=tags['tag'])
         self.__logger.info(enumerator)
         self.__logger.info(archetype)
 
