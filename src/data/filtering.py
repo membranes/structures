@@ -38,8 +38,4 @@ class Filtering:
         # Finally, the viable instances
         frame: pd.DataFrame = data.copy().loc[markings, :]
 
-        self.__logger.info(frame.head())
-        self.__logger.info(frame['category'].unique())
-        frame.info()
-
         return frame
