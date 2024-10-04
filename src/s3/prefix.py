@@ -1,7 +1,11 @@
 """Module prefix.py"""
+import logging
 import boto3
+import botocore.exceptions
 
 import src.elements.service as sr
+
+import src.s3.keys
 
 
 class Prefix():
@@ -13,17 +17,42 @@ class Prefix():
         :param bucket_name:
         """
 
-        self.__s3_resource: boto3.session.Session.resource = service.s3_resource
+        self.__service: sr.Service = service
+        self.__s3_client = self.__service.s3_client
         self.__bucket_name = bucket_name
 
-        # A bucket instance
-        self.__bucket = self.__s3_resource.Bucket(name=self.__bucket_name)
 
-    def delete(self, key: str):
+
+        # Logging
+        logging.basicConfig(level=logging.INFO,
+                            format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
+                            datefmt='%Y-%m-%d %H:%M:%S')
+        self.__logger = logging.getLogger(__name__)
+
+    def delete(self, objects: list[dict]):
         """
 
-        :param key: An Amazon S3 (Simple Storage Service) prefix
+        :param objects: An Amazon S3 (Simple Storage Service) ...
         :return:
         """
 
-        return self.__bucket.delete_objects({'Key': key})
+        try:
+            response = self.__s3_client.delete_objects(
+                Bucket=self.__bucket_name, Delete={'Objects': objects, 'Quiet': False})
+        except botocore.exceptions.ClientError as err:
+            raise err from err
+
+        self.__logger.info(response)
+
+        return response
+
+    def objects(self, prefix: str) -> list[str]:
+        """
+
+        :param prefix:
+        :return:
+        """
+
+        instance = src.s3.keys.Keys(service=self.__service, bucket_name=self.__bucket_name)
+
+        return instance.excerpt(prefix=prefix)
