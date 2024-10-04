@@ -51,7 +51,7 @@ class S3Parameters:
 
         # Parsing variables
         region_name = self.__secret.exc(secret_id='RegionCodeDefault')
-        internal = self.__secret.exc(secret_id='TokenClassification', node='internal')
+        internal = self.__secret.exc(secret_id='DispatchTokenClassification', node='internal')
 
         s3_parameters: s3p.S3Parameters = s3_parameters._replace(
             location_constraint=region_name, region_name=region_name, internal=internal)
