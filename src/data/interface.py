@@ -93,7 +93,7 @@ class Interface:
         self.__logger.info(strings)
 
         # Transfer
-        # messages = src.s3.ingress.Ingress(
-        #     service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
-        #
-        # return messages
+        messages = src.s3.ingress.Ingress(
+            service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
+
+        return messages
