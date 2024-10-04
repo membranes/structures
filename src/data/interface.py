@@ -88,8 +88,9 @@ class Interface:
         self.__streams.write(blob=data, path=pre.format('data.csv'))
 
         # Inventory of data files
-        # strings = self.__dictionary.exc(
-        #     path=self.__configurations.prepared_, extension='*', prefix=self.__s3_parameters.path_internal_data)
+        strings = self.__dictionary.exc(
+            path=self.__configurations.warehouse, extension='*', prefix=self.__s3_parameters.path_internal_data)
+        self.__logger.info(strings)
 
         # Transfer
         # messages = src.s3.ingress.Ingress(
