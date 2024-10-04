@@ -7,7 +7,10 @@ import src.elements.service as sr
 import src.s3.keys
 
 
-class Prefix():
+class Prefix:
+    """
+    Class Prefix
+    """
 
     def __init__(self, service: sr.Service, bucket_name: str):
         """
