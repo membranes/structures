@@ -12,7 +12,6 @@ class Config:
         Constructor
         """
 
-        self.datapath = os.path.join(os.getcwd(), 'data')
         self.warehouse = os.path.join(os.getcwd(), 'warehouse')
         self.prepared_ = os.path.join(self.warehouse, 'prepared')
 
