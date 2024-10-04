@@ -33,7 +33,7 @@ class Keys:
         """
         https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3/client/list_objects_v2.html
 
-        :param prefix: Amazon S3 (Simple Storage Service) prefix.
+        :param prefix: An Amazon S3 (Simple Storage Service) prefix.
         :return:
             A list of Amazon S3 (Simple Storage Service) keys.
         """
