@@ -13,18 +13,15 @@ def main() -> None:
     """
 
     logger: logging.Logger = logging.getLogger(__name__)
-    logger.info(s3_parameters)
 
     # Set up
-    setup = src.setup.Setup(service=service, s3_parameters=s3_parameters,
-        warehouse=configurations.warehouse).exc()
+    setup = src.setup.Setup(service=service, s3_parameters=s3_parameters).exc()
     logger.info(setup)
 
     # Get
-    if setup:
-        messages = src.data.interface.Interface(service=service, s3_parameters=s3_parameters,
-            warehouse=configurations.warehouse).exc()
-        logger.info(messages)
+    # if setup:
+    #     messages = src.data.interface.Interface(service=service, s3_parameters=s3_parameters).exc()
+    #     logger.info(messages)
 
     # Delete Cache Points
     src.functions.cache.Cache().exc()
