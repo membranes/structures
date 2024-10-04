@@ -1,5 +1,5 @@
 """Module source.py"""
-import logging
+
 import os
 
 import pandas as pd
@@ -13,9 +13,9 @@ import src.data.structuring
 import src.data.tags
 import src.elements.s3_parameters as s3p
 import src.elements.service as sr
-import src.s3.ingress
 import src.functions.objects
 import src.functions.streams
+import src.s3.ingress
 
 
 class Interface:
@@ -40,34 +40,28 @@ class Interface:
         self.__objects = src.functions.objects.Objects()
         self.__streams = src.functions.streams.Streams()
 
-        # Logging
-        logging.basicConfig(level=logging.INFO,
-                            format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
-                            datefmt='%Y-%m-%d %H:%M:%S')
-        self.__logger = logging.getLogger(__name__)
-
-    def __elements(self):
+    def __tags(self):
         """
 
         :return:
         """
 
-        elements = src.data.tags.Tags(data=self.__raw).exc()
-        enumerator, archetype = src.data.encodings.Encodings().exc(elements=elements)
+        tags = src.data.tags.Tags(data=self.__raw).exc()
+        enumerator, archetype = src.data.encodings.Encodings().exc(tags=tags)
 
-        return elements, enumerator, archetype
+        return tags, enumerator, archetype
 
-    def __data(self, elements: pd.DataFrame) -> pd.DataFrame:
+    def __data(self, tags: pd.DataFrame) -> pd.DataFrame:
         """
         Filtering out instances of the raw data that are associated with elements/tags
         that have fewer than an expected number of occurrences.
 
-        :param elements:
+        :param tags:
         :return:
         """
 
         filtering = src.data.filtering.Filtering()
-        filtered = filtering(data=self.__raw, elements=elements)
+        filtered = filtering(data=self.__raw, tags=tags)
 
         data = src.data.structuring.Structuring(data=filtered).exc()
 
@@ -79,8 +73,15 @@ class Interface:
         :return:
         """
 
-        elements, enumerator, archetype = self.__elements()
-        data = self.__data(elements=elements)
+        # Foremost (a) the table of viable tags, and (b) an enumeration of the tags; archetype
+        # is the inverse of enumerator.
+        tags: pd.DataFrame
+        enumerator: dict
+        archetype: dict
+        tags, enumerator, archetype = self.__tags()
+
+        # Tha data; only the instances with via
+        data = self.__data(tags=tags)
 
         pre = os.path.join(self.__configurations.prepared_, '{}')
         self.__objects.write(nodes=enumerator, path=pre.format('enumerator.json'))
@@ -90,7 +91,6 @@ class Interface:
         # Inventory of data files
         strings = self.__dictionary.exc(
             path=self.__configurations.warehouse, extension='*', prefix=self.__s3_parameters.path_internal_data)
-        self.__logger.info(strings)
 
         # Transfer
         messages = src.s3.ingress.Ingress(
