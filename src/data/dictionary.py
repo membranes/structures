@@ -23,7 +23,8 @@ class Dictionary:
                             datefmt='%Y-%m-%d %H:%M:%S')
         self.__logger = logging.getLogger(__name__)
 
-    def __local(self, path: str, extension: str) -> pd.DataFrame:
+    @staticmethod
+    def __local(path: str, extension: str) -> pd.DataFrame:
         """
 
         :param path: The path wherein the files of interest lie
@@ -32,7 +33,6 @@ class Dictionary:
         """
 
         splitter = os.path.basename(path) + os.path.sep
-        self.__logger.info(splitter)
 
         # The list of files within the path directory, including its child directories.
         files: list[str] = glob.glob(pathname=os.path.join(path, '**',  f'*.{extension}'),
