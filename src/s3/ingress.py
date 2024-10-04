@@ -29,7 +29,7 @@ class Ingress:
         self.__bucket_name = bucket_name
 
     @dask.delayed
-    def __ingress(self, file: str, key: str, metadata: dict) -> str:
+    def __ingress(self, file: str, key: str, metadata: dict, extract_tags: bool = False) -> str:
         """
         https://boto3.amazonaws.com/v1/documentation/api/latest/reference/customizations/
             s3.html#boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS
@@ -40,16 +40,20 @@ class Ingress:
                     relative-to the S3 Bucket name, but excludes the S3 Bucket name.
         :param metadata: The metadata of the files being uploaded. Note, files of
                          the same content type are expected, assumed.
+        :param extract_tags: Extract tags from the metadata dictionary?
         :return:
         """
 
         # Either tags = {key: value for key, value in metadata.items()}, or
-        # tags = dict(metadata.items())
-        # tagging = urllib.parse.urlencode(tags)
+        if extract_tags:
+            tags = dict(metadata.items())
+            tagging = urllib.parse.urlencode(tags)
+        else:
+            tagging = ''
 
         try:
             self.__s3_client.upload_file(Filename=file, Bucket=self.__bucket_name, Key=key,
-                                         ExtraArgs={'Metadata': metadata})
+                                         ExtraArgs={'Metadata': metadata, 'Tagging': tagging})
             return f'Uploading {key}'
         except botocore.exceptions.ClientError as err:
             raise err from err
