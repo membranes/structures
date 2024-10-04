@@ -16,7 +16,6 @@ def main() -> None:
 
     # Set up
     setup: bool = src.setup.Setup(service=service, s3_parameters=s3_parameters).exc()
-    logger.info('Successful Set Up: %s', 'Yes' if setup else 'No')
 
     # Get
     if setup:
