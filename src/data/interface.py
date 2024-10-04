@@ -1,8 +1,10 @@
 """Module source.py"""
 import logging
+import os
 
 import pandas as pd
 
+import config
 import src.data.dictionary
 import src.data.encodings
 import src.data.filtering
@@ -12,8 +14,7 @@ import src.data.tags
 import src.elements.s3_parameters as s3p
 import src.elements.service as sr
 import src.s3.ingress
-
-import config
+import src.functions.objects
 
 
 class Interface:
@@ -35,6 +36,7 @@ class Interface:
 
         # Instances
         self.__dictionary = src.data.dictionary.Dictionary()
+        self.__objects = src.functions.objects.Objects()
 
         # Logging
         logging.basicConfig(level=logging.INFO,
@@ -90,6 +92,10 @@ class Interface:
         self.__logger.info(enumerator)
         self.__logger.info(archetype)
         self.__logger.info(data)
+
+        self.__objects.write(nodes=enumerator, path=os.path.join(self.__configurations.prepared_, 'enumerator.json'))
+        self.__objects.write(nodes=archetype, path=os.path.join(os.path.join(self.__configurations.prepared_, 'archetype.json')))
+
 
         # Inventory of data files
         # strings = self.__dictionary.exc(
