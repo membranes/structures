@@ -15,8 +15,8 @@ def main() -> None:
     logger: logging.Logger = logging.getLogger(__name__)
 
     # Set up
-    setup = src.setup.Setup(service=service, s3_parameters=s3_parameters).exc()
-    logger.info(setup)
+    setup: bool = src.setup.Setup(service=service, s3_parameters=s3_parameters).exc()
+    logger.info('Set: %s', setup)
 
     # Get
     if setup:
