@@ -22,19 +22,23 @@ class Encodings:
                             datefmt='%Y-%m-%d %H:%M:%S')
         self.__logger = logging.getLogger(__name__)
 
-
-    @staticmethod
-    def __coding(series: pd.Series) -> typing.Tuple[dict, dict]:
+    def __coding(self, series: pd.Series) -> typing.Tuple[dict, dict]:
         """
         Tags enumeration, and their inverse mappings.
+
+        Equivalent
+            {v: k for v, k in enumerate(iterable=series)}
+            dict(enumerate(iterable=series))
 
         :param series:
         :return:
         """
 
-        enumerator = {k: v for v, k in enumerate(iterable=series)}
+        enumerator: dict = {k: v for v, k in enumerate(iterable=series)}
+        self.__logger.info(enumerator)
 
-        archetype = {v: k for v, k in enumerate(iterable=series)}
+        archetype: dict = dict(enumerate(iterable=series))
+        self.__logger.info(archetype)
 
         return enumerator, archetype
 
@@ -46,7 +50,5 @@ class Encodings:
         """
 
         enumerator, archetype = self.__coding(series=tags['tag'])
-        self.__logger.info(enumerator)
-        self.__logger.info(archetype)
 
         return enumerator, archetype
