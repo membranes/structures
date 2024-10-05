@@ -23,3 +23,9 @@ class Config:
 
         # Node: The raw data to be structured
         self.node = 'raw/dataset.csv'
+
+        # The metadata of the prepared data
+        self.metadata = {'description': 'The prepared data collection for the token classification project.',
+                         'details': 'The collection consists of (a) the data, i.e., data.csv, (b) the identity ' +
+                                    'and label mapping enumerator.json, and (c) the inverse of enumerator.json, i.e., ' +
+                                    'archetype.json.'}
