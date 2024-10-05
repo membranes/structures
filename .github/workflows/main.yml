@@ -1,4 +1,4 @@
-name: Templates
+name: Raw Data Structuring
 
 on: [push]
 
