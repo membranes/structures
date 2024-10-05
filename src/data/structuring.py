@@ -38,7 +38,7 @@ class Structuring:
         """
 
         sentences: pd.DataFrame = blob.copy().drop(columns='tag').groupby(
-            by=['sentence_identifier'])['word'].apply(lambda x: ' '.join(x)).to_frame()
+            by=['sentence_identifier'])['word'].apply(' '.join).to_frame()
 
         return sentences
 
@@ -51,7 +51,7 @@ class Structuring:
         """
 
         labels: pd.DataFrame = blob.copy().drop(columns='word').groupby(
-            by=['sentence_identifier'])['tag'].apply(lambda x: ','.join(x)).to_frame()
+            by=['sentence_identifier'])['tag'].apply(','.join).to_frame()
 
         return labels
 
