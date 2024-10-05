@@ -1,11 +1,10 @@
 """
 Module objects.py
 """
-import sys
-
 import json
 import pathlib
-import requests
+
+import src.functions.api
 
 
 class Objects:
@@ -51,18 +50,9 @@ class Objects:
         :return:
         """
 
-        try:
-            response = requests.get(url=url, timeout=600)
-            response.raise_for_status()
-        except requests.exceptions.Timeout as err:
-            raise err from err
-        except Exception as err:
-            raise err from err
+        instance = src.functions.api.API()
 
-        if response.status_code == 200:
-            return response.json()
-
-        sys.exit(response.status_code)
+        return instance(url=url)
 
     @staticmethod
     def read(uri: str) -> dict:
