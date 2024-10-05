@@ -1,22 +1,22 @@
 """Module filtering.py"""
-import logging
 
 import pandas as pd
 
 
 class Filtering:
+    """
+    Class Filtering
+
+    Filters out inviable sentences because they include one or more words
+    associated with inviable categories.  A category is inviable if the
+    number of words associated with the category is < config.Config().minimum_category_frequency
+    """
 
     def __init__(self):
         """
 
         Constructor
         """
-
-        # Logging
-        logging.basicConfig(level=logging.INFO,
-                            format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
-                            datefmt='%Y-%m-%d %H:%M:%S')
-        self.__logger = logging.getLogger(__name__)
 
     def __call__(self, data: pd.DataFrame, tags: pd.DataFrame) -> pd.DataFrame:
         """
