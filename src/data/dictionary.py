@@ -1,10 +1,11 @@
 """Module dictionary.py"""
 import glob
-import logging
 import os
 
 import numpy as np
 import pandas as pd
+
+import config
 
 
 class Dictionary:
@@ -17,11 +18,7 @@ class Dictionary:
         Constructor
         """
 
-        # Logging
-        logging.basicConfig(level=logging.INFO,
-                            format='\n\n%(message)s\n%(asctime)s.%(msecs)03d',
-                            datefmt='%Y-%m-%d %H:%M:%S')
-        self.__logger = logging.getLogger(__name__)
+        self.__metadata = config.Config().metadata
 
     @staticmethod
     def __local(path: str, extension: str) -> pd.DataFrame:
@@ -45,16 +42,6 @@ class Dictionary:
 
         return pd.DataFrame.from_records(details)
 
-    @staticmethod
-    def __metadata() -> dict:
-        """
-
-        :return:
-        """
-
-        return {'description': 'The prepared data collection for the token classification project.',
-                'details': 'The collection consists of (a) the data, i.e., data.csv, (b) the identity and label mapping enumerator.json, and (c) the inverse of enumerator.json, i.e., archetype.json.'}
-
     def exc(self, path: str, extension: str, prefix: str) -> pd.DataFrame:
         """
 
@@ -70,6 +57,6 @@ class Dictionary:
         frame = local.assign(key=prefix + local["vertex"])
 
         # The metadata dict strings
-        frame['metadata'] = np.array(self.__metadata()).repeat(frame.shape[0])
+        frame['metadata'] = np.array(self.__metadata).repeat(frame.shape[0])
 
         return frame[['file', 'key', 'metadata']]
