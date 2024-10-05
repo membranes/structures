@@ -19,6 +19,11 @@ import src.s3.ingress
 
 
 class Interface:
+    """
+    Class Interface
+
+    The steps.
+    """
 
     def __init__(self, service: sr.Service,  s3_parameters: s3p):
         """
