@@ -1,10 +1,9 @@
 """
 Module serial.py
 """
-import sys
-
 import yaml
-import requests
+
+import src.functions.api
 
 
 class Serial:
@@ -29,19 +28,9 @@ class Serial:
         :return:
         """
 
-        try:
-            response = requests.get(url=url, timeout=600)
-            response.raise_for_status()
-        except requests.exceptions.Timeout as err:
-            raise err from err
-        except Exception as err:
-            raise err from err
+        instance = src.functions.api.API()
 
-        if response.status_code == 200:
-            content = response.content.decode(encoding='utf-8')
-            return yaml.safe_load(content)
-
-        sys.exit(response.status_code)
+        return instance(url=url)
 
     @staticmethod
     def read(uri: str) -> dict:
