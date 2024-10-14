@@ -85,7 +85,7 @@ class Interface:
         archetype: dict
         tags, enumerator, archetype = self.__tags()
 
-        # Tha data; only the instances with via
+        # Tha data; only the instances associated with viable tags
         data = self.__data(tags=tags)
 
         pre = os.path.join(self.__configurations.prepared_, '{}')
