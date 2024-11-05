@@ -33,7 +33,7 @@ class Encodings:
         enumerator: dict = {k: v for v, k in enumerate(iterable=series)}
         self.__logger.info(enumerator)
 
-        archetype: dict = {v: k for k, v in enumerate(iterable=series)}
+        archetype: dict = {v: k for k, v in enumerator.items()}
         self.__logger.info(archetype)
 
         return enumerator, archetype
