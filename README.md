@@ -1,7 +1,7 @@
 
 <br>
 
-Prepares the raw data for the modelling stage; token detection & classification model development.
+Prepares the raw data for the modelling stage.
 
 <br>
 <br>
