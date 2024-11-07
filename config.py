@@ -25,13 +25,13 @@ class Config:
         self.node = 'raw/dataset.csv'
 
         # The metadata of the prepared data
-        data = 'fields: {"sentence_identifier": "The sentence identification code.", "sentence": "A news brief sentence.", "tagstr": "The tag of each word or punctuation in the sentence."}'
+        text = 'fields: {"sentence_identifier": "The sentence identification code.", "sentence": "A news brief sentence.", "tagstr": "The tag of each word or punctuation in the sentence."}'
         tags = 'terms: {"Annotation": {"I": "inside", "B": "beginning"},  "Categories": {"ORG": "organisation names", "GPE": "geopolitical entity", "LOC": "geographical names", "TIM": "time representations", "PER": "names of people"}}'
 
         self.metadata = {'description': 'The prepared data collection for the token classification project.',
                          'details': 'The collection consists of (a) the data set of news briefs, i.e., data.csv, (b) the identity ' +
                                     'and label mapping enumerator.json, and (c) the inverse of enumerator.json, i.e., ' +
                                     'archetype.json.',
-                         'file-data': data,
+                         'file-data': text,
                          'file-enumerator': tags,
                          'file-archetype': tags}
