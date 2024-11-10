@@ -98,7 +98,7 @@ class Interface:
             path=self.__configurations.warehouse, extension='*', prefix=self.__s3_parameters.path_internal_data)
 
         # Transfer
-        messages = src.s3.ingress.Ingress(
-            service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
+        # messages = src.s3.ingress.Ingress(
+        #     service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
 
-        return messages
+        # return messages
