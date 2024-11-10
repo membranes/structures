@@ -19,8 +19,8 @@ def main() -> None:
 
     # Get
     if setup:
-        messages = src.data.interface.Interface(service=service, s3_parameters=s3_parameters).exc()
-        logger.info(messages)
+        src.data.interface.Interface(service=service, s3_parameters=s3_parameters).exc()
+        # logger.info(messages)
 
     # Delete Cache Points
     src.functions.cache.Cache().exc()
