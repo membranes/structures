@@ -55,6 +55,21 @@ class Structuring:
 
         return labels
 
+    @staticmethod
+    def __reformatting(blob: pd.DataFrame) -> pd.DataFrame:
+        """
+
+        :param blob: The data, which has fields sentence_identifier, sentence, & tagstr
+        :return:
+        """
+
+        frame = pd.DataFrame()
+        frame['id'] = blob.copy()['sentence_identifier'].str.replace(pat='Sentence: ', repl='').str.strip()
+        frame['sentence'] = blob.copy()['sentence'].str.strip().str.split().apply(lambda words: [word.strip() for word in words])
+        frame['tagstr'] = blob.copy()['tagstr'].str.strip().str.split(',')
+
+        return frame
+
     def exc(self) -> pd.DataFrame:
         """
 
@@ -72,6 +87,8 @@ class Structuring:
         frame.reset_index(inplace=True)
         frame.rename(columns={'word': 'sentence', 'tag': 'tagstr'}, inplace=True)
 
+        # Formatting
+        frame = self.__reformatting(blob=frame)
         self.__logger.info('\n\n%s\n\n', frame.head())
         frame.info()
 
