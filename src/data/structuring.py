@@ -68,7 +68,8 @@ class Structuring:
 
         frame = blob.copy()
         frame['sentence_identifier'] = frame['sentence_identifier'].str.replace(pat='Sentence: ', repl='').str.strip()
-        frame['code_per_tag'] = frame['tagstr'].str.split(',').apply(lambda x: ','.join(map( str, map(self.__enumerator.get, x))))
+        frame['code_per_tag'] = frame['tagstr'].str.split(',').apply(
+            lambda x: ','.join(map(str, map(self.__enumerator.get, x))))
 
         return frame
 
