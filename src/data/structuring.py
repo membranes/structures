@@ -12,16 +12,18 @@ class Structuring:
     This class builds the expected data structure for ...
     """
 
-    def __init__(self, data: pd.DataFrame) -> None:
+    def __init__(self, data: pd.DataFrame, enumerator: dict) -> None:
         """
         Creates the expected structure.  Within <data> each distinct sentence
         is split across rows; a word per row, in order.  The Specimen class re-constructs the
         original sentences.
 
         :param data:
+        :param enumerator:
         """
 
         self.__data: pd.DataFrame = data
+        self.__enumerator: dict = enumerator
 
         # Logging
         logging.basicConfig(level=logging.INFO,
@@ -55,19 +57,19 @@ class Structuring:
 
         return labels
 
-    @staticmethod
-    def __reformatting(blob: pd.DataFrame) -> pd.DataFrame:
+    def __reformatting(self, blob: pd.DataFrame) -> pd.DataFrame:
         """
+        frame['words'] = frame['sentence'].str.split()
+        frame['codes'] = frame['tagstr'].str.split(',').apply(lambda x: list(map(self.__enumerator.get, x)))
 
         :param blob: The data, which has fields sentence_identifier, sentence, & tagstr
         :return:
         """
 
-        frame = pd.DataFrame()
-        frame['id'] = blob.copy()['sentence_identifier'].str.replace(pat='Sentence: ', repl='').str.strip()
-        frame['sentence'] = blob.copy()['sentence'].str.strip().str.split().apply(
-            lambda words: [word.strip() for word in words])
-        frame['tagstr'] = blob.copy()['tagstr'].str.strip().str.split(',')
+        frame = blob.copy()
+        frame['sentence_identifier'] = frame['sentence_identifier'].str.replace(pat='Sentence: ', repl='').str.strip()
+        frame['code_per_tag'] = frame['tagstr'].str.split(',').apply(
+            lambda x: ','.join(map(str, map(self.__enumerator.get, x))))
 
         return frame
 
@@ -90,6 +92,8 @@ class Structuring:
 
         # Formatting
         frame = self.__reformatting(blob=frame)
+
+        # Preview
         self.__logger.info('\n\n%s\n\n', frame.head())
         frame.info()
 

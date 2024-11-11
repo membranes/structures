@@ -56,23 +56,24 @@ class Interface:
 
         return tags, enumerator, archetype
 
-    def __data(self, tags: pd.DataFrame) -> pd.DataFrame:
+    def __data(self, tags: pd.DataFrame, enumerator: dict) -> pd.DataFrame:
         """
         Filtering out instances of the raw data that are associated with elements/tags
         that have fewer than an expected number of occurrences.
 
         :param tags:
+        :param enumerator:
         :return:
         """
 
         filtering = src.data.filtering.Filtering()
         filtered = filtering(data=self.__raw, tags=tags)
 
-        data = src.data.structuring.Structuring(data=filtered).exc()
+        data = src.data.structuring.Structuring(data=filtered, enumerator=enumerator).exc()
 
         return data
 
-    def exc(self):
+    def exc(self) -> list[str]:
         """
 
         :return:
@@ -86,7 +87,7 @@ class Interface:
         tags, enumerator, archetype = self.__tags()
 
         # Tha data; only the instances associated with viable tags
-        data = self.__data(tags=tags)
+        data = self.__data(tags=tags, enumerator=enumerator)
 
         pre = os.path.join(self.__configurations.prepared_, '{}')
         self.__objects.write(nodes=enumerator, path=pre.format('enumerator.json'))
