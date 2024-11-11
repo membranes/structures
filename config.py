@@ -25,7 +25,7 @@ class Config:
         self.node = 'raw/dataset.csv'
 
         # The metadata of the prepared data
-        text = 'fields: {"sentence_identifier": "The sentence identification code.", "sentence": "A news brief sentence.", "tagstr": "The tag of each word or punctuation in the sentence."}'
+        text = 'fields: {"sentence_identifier": "The sentence identification code.", "sentence": "A news brief sentence.", "tagstr": "The tag of each word or punctuation in the sentence.", "code_per_tag": "The code of each tag in tagstr."}'
         tags = 'terms: {"Annotation": {"I": "inside", "B": "beginning"},  "Categories": {"ORG": "organisation names", "GPE": "geopolitical entity", "LOC": "geographical names", "TIM": "time representations", "PER": "names of people"}}'
 
         self.metadata = {'description': 'The prepared data collection for the token classification project.',
