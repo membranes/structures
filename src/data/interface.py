@@ -73,7 +73,7 @@ class Interface:
 
         return data
 
-    def exc(self):
+    def exc(self) -> list[str]:
         """
 
         :return:
@@ -97,10 +97,9 @@ class Interface:
         # Inventory of data files
         strings = self.__dictionary.exc(
             path=self.__configurations.warehouse, extension='*', prefix=self.__s3_parameters.path_internal_data)
-        print(strings)
 
         # Transfer
-        # messages = src.s3.ingress.Ingress(
-        #     service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
+        messages = src.s3.ingress.Ingress(
+            service=self.__service, bucket_name=self.__s3_parameters.internal).exc(strings=strings)
 
-        # return messages
+        return messages
