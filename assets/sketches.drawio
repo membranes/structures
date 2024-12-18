@@ -1,0 +1,58 @@
+<mxfile host="Electron" modified="2024-12-18T14:06:23.962Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="ERDtSUaxzs0JpMFBlcF-" version="22.1.2" type="device">
+  <diagram name="sketches" id="B8YJLKPye3qC7PbBZhVp">
+    <mxGraphModel dx="1017" dy="808" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=0.5;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;fontSize=13;strokeColor=#000000;" parent="1" source="TCmdTE8PnRt5bWG5yBiK-2" target="TCmdTE8PnRt5bWG5yBiK-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=0.5;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;fontSize=13;strokeColor=#ED7100;" parent="1" source="TCmdTE8PnRt5bWG5yBiK-2" target="TCmdTE8PnRt5bWG5yBiK-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;strokeWidth=0.5;strokeColor=#ED7100;" parent="1" source="TCmdTE8PnRt5bWG5yBiK-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="341" y="200.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-2" value="data" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ED7100;strokeColor=none;rotation=0;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;strokeWidth=0.5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="378" y="193" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-3" value="raw" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=none;rotation=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;strokeWidth=0.5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="443" y="193" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-4" value="prepared" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ED7100;strokeColor=none;rotation=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;strokeWidth=0.5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="443" y="238" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=0.5;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;fontSize=13;" parent="1" source="TCmdTE8PnRt5bWG5yBiK-5" target="TCmdTE8PnRt5bWG5yBiK-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=0.5;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;fontSize=13;" parent="1" source="TCmdTE8PnRt5bWG5yBiK-5" target="TCmdTE8PnRt5bWG5yBiK-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="381" y="340" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;strokeWidth=0.5;" parent="1" source="TCmdTE8PnRt5bWG5yBiK-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="341" y="321.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-5" value="artefacts" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=none;rotation=0;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;strokeWidth=0.5;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="378" y="314" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=1 4;endArrow=none;endFill=0;strokeWidth=1;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;fontSize=13;" parent="1" source="TCmdTE8PnRt5bWG5yBiK-6" target="TCmdTE8PnRt5bWG5yBiK-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-6" value="\(model_{_{1}}\)" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=none;rotation=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;strokeWidth=0.5;fontSize=13;perimeterSpacing=0;spacingRight=0;spacingLeft=2;" parent="1" vertex="1">
+          <mxGeometry x="443" y="314" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-9" value="\(model_{_{N}}\)" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=none;rotation=0;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;dashed=1;dashPattern=1 1;strokeWidth=0.5;fontSize=13;spacingLeft=2;" parent="1" vertex="1">
+          <mxGeometry x="443" y="404" width="15" height="15" as="geometry" />
+        </mxCell>
+        <mxCell id="TCmdTE8PnRt5bWG5yBiK-19" value="the data &amp;amp; artefacts bucket" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#000000;strokeColor=none;dashed=0;verticalLabelPosition=middle;verticalAlign=middle;align=right;html=1;fontSize=13;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;rotation=0;strokeWidth=0.5;whiteSpace=wrap;fontFamily=Asap;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DAsap;labelPosition=left;spacingLeft=0;spacingRight=10;" parent="1" vertex="1">
+          <mxGeometry x="260" y="181" width="37.5" height="39" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
